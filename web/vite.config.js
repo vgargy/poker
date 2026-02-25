@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     open: true,
     port: 3000,
-    origin: "http://127.0.0.1:8080",
+    //origin: "http://127.0.0.1:8080",
     proxy: {
       "/poker": {
         target: "http://127.0.0.1:8080",
