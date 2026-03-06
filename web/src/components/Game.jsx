@@ -114,7 +114,8 @@ export default function Game({ gameId, onBack }) {
 
 
   return (
-    <div style={{ padding: 20 }}>
+      <div className="container">
+      <div className="page">  
       <Button onClick={onBack} style={{ marginBottom: 10 }}>
         {"<< Back to Games"}
       </Button>
@@ -162,7 +163,7 @@ export default function Game({ gameId, onBack }) {
       />
 
       <Table height={1000} data={players}>
-        <Column width={155}>
+        <Column width={155} align="left">
           <HeaderCell>Name</HeaderCell>
           <Cell>
             {rowData => (
@@ -179,7 +180,7 @@ export default function Game({ gameId, onBack }) {
         </Column>
 
         <>
-        <Column width={110} >
+        <Column width={110} align="center">
           <HeaderCell>Credit</HeaderCell>
           <Cell>
              {(rowData) => (
@@ -206,7 +207,7 @@ export default function Game({ gameId, onBack }) {
           </Cell>
         </Column>
 
-        <Column width={110}>
+        <Column width={110} align="center">
           <HeaderCell>Cash In</HeaderCell>
           <Cell>
              {(rowData) => (
@@ -233,7 +234,7 @@ export default function Game({ gameId, onBack }) {
               )}
           </Cell>
         </Column>
-        <Column width={155}>
+        <Column width={155} align="center">
           <HeaderCell>Amount</HeaderCell>
           <Cell>{rowData => renderTotalAmount(rowData)}</Cell>
         </Column>
@@ -287,6 +288,7 @@ export default function Game({ gameId, onBack }) {
         </Column>
         }
       </Table>
+    </div>
     </div>
   );
 }

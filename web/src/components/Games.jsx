@@ -4,13 +4,15 @@ import Game from "./Game";
 import api from "../util/api";
 import Menu from "../shared/Menu";
 import MenuItem from "../shared/MenuItem";
-const { Column, HeaderCell, Cell } = Table;
+import { useNavigate } from "react-router-dom";
 
-export default function Games() {
+export default function Games({setToken}) {
+  const { Column, HeaderCell, Cell } = Table;
   const [games, setGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
   const [venue, setVenue] = useState("");
   const [date, setDate] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadGames();
@@ -82,6 +84,17 @@ export default function Games() {
       }
   };
 
+
+  const logout = () => {
+    api.post(`/poker/auth/logout`)
+    .finally(() => {
+        sessionStorage.removeItem("token");
+        setToken(null);
+        navigate("/login", { replace: true });
+    })
+
+  }
+
   if (selectedGame) {
     return (
       <Game
@@ -92,8 +105,9 @@ export default function Games() {
   }
 
   return (
-      <div style={{ paddingTop: 50, paddingRight: 20, paddingBottom: 20, paddingLeft: 20 }}>
-      <Stack spacing={10} alignItems="center" style={{ marginBottom: 10 }}>
+      <div className="container">
+      <div className="page">  
+      <Stack spacing={10} alignItems="left" style={{ marginBottom: 10 }}>
          <Input
           placeholder="Venue"
           value={venue}
@@ -108,11 +122,18 @@ export default function Games() {
         <Button appearance="primary" onClick={addGame} alignItems="right">
           New
         </Button>
+        <div style={{ marginLeft: 'auto' }}>
+        <Menu menuItems={[
+            <MenuItem name="logout" label={"Logout"} 
+            action={logout}/>
+        ]}/>
+        </div>
       </Stack>
 
-      <Table height={700} data={games} >
 
-        <Column flexGrow={1}>
+      <Table data={games} >
+
+        <Column flexGrow={1} align="left">
           <HeaderCell>Date</HeaderCell>
           <Cell>
             {rowData => (
@@ -123,7 +144,7 @@ export default function Games() {
           </Cell>
         </Column>
 
-        <Column flexGrow={1}>
+        <Column flexGrow={1} align="left">
           <HeaderCell>Venue</HeaderCell>
           <Cell dataKey="venue" />
         </Column>
@@ -149,7 +170,7 @@ export default function Games() {
         </Column>
       </Table>
       <Pagination limit={1}/>
-
+    </div>
     </div>
   );
 }

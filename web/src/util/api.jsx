@@ -10,6 +10,19 @@ const api = axios.create({
   },
 });
 
+// Add Authorization header to every request
+api.interceptors.request.use(
+  (config) => {
+    const token = sessionStorage.getItem("token");
+    console.log("token...", token);
+    if (token && token !== 'undefined') {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Global response interceptor
 api.interceptors.response.use(
   (response) => {
@@ -31,6 +44,14 @@ api.interceptors.response.use(
     return data.data;
   },
   (error) => {
+     if (error.response && error.response.status === 401) {
+      // Clear token from localStorage
+      sessionStorage.removeItem('token');
+
+      // Redirect to login
+      window.location.href = '/login?reason=auth_failed'; // simple way
+      return;
+    }
     toaster.push(
       React.createElement(
         Message,

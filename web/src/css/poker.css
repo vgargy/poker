@@ -1,0 +1,61 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("/images/poker-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 320px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.page {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 75vw;       /* full viewport width */
+  height: 75vh;      /* full viewport height */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.card input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+
+  border: none;
+  background: #4f46e5;
+  color: white;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  background: #4338ca;
+}
+
+

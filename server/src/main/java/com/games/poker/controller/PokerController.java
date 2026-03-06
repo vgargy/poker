@@ -35,7 +35,7 @@ public class PokerController {
     		@RequestParam(name = "date", required = false) String date) throws Exception {
         String method = "PokerController.newGame():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             return ResponseEntity.ok(new WebResponse<>(service.newGame(buyIn, venue, date), 
             		"Game {%s} created successfully".formatted(venue)));
         } catch (Exception ex){
@@ -47,7 +47,7 @@ public class PokerController {
     public ResponseEntity<WebResponse<?>> listGames() throws Exception {
         String method = "PokerController.listGames():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In... ", method);
             return ResponseEntity.ok(new WebResponse<>(service.allGames(), null));
         } catch (Exception ex){
             throw ex;
@@ -59,7 +59,7 @@ public class PokerController {
     		throws Exception {
         String method = "PokerController.getGame():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             return ResponseEntity.ok(new WebResponse<>(service.getGameDetails(gameId), null));
         } catch (Exception ex){
             throw ex;
@@ -71,7 +71,7 @@ public class PokerController {
     		throws Exception {
         String method = "PokerController.getPlayer():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             return ResponseEntity.ok(new WebResponse<>(service.getPlayerDetails(playerId), null));
         } catch (Exception ex){
             throw ex;
@@ -83,7 +83,7 @@ public class PokerController {
     public ResponseEntity<WebResponse<?>> listPlayers() throws Exception {
         String method = "PokerController.listPlayers():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             return ResponseEntity.ok(new WebResponse<>(service.allPlayers(), null));
         } catch (Exception ex){
             throw ex;
@@ -98,7 +98,7 @@ public class PokerController {
     		@PathVariable("lastName") String lastName) throws Exception {
         String method = "PokerController.addPlayerByName():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             return ResponseEntity.ok(new WebResponse<>(service.addNewPlayer(firstName, lastName, gameId),
             		"Player %s added successfully".formatted(firstName)));
         } catch (Exception ex){
@@ -113,7 +113,7 @@ public class PokerController {
     		@PathVariable("playerId") UUID playerId) throws Exception {
         String method = "PokerController.addPlayerById():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             service.addPlayer(gameId, playerId);
             return ResponseEntity.ok(new WebResponse<>(service.addPlayer(gameId, playerId),
             		"Player added successfully"));
@@ -129,7 +129,7 @@ public class PokerController {
     		@PathVariable(name = "amount") BigDecimal amount) throws Exception {
         String method = "PokerController.reBuy():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             service.reBuy(gameId, playerId, amount);
             return ResponseEntity.ok(new WebResponse<>(null, "rebuy added"));
         } catch (Exception ex){
@@ -144,7 +144,7 @@ public class PokerController {
     		@PathVariable(name = "amount") BigDecimal amount) throws Exception {
         String method = "PokerController.credit():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             service.credit(gameId, playerId, amount);
             return ResponseEntity.ok(new WebResponse<>(null, "amount credited"));
         } catch (Exception ex){
@@ -160,7 +160,7 @@ public class PokerController {
     		@PathVariable(name = "amount") BigDecimal amount) throws Exception {
         String method = "PokerController.cashIn():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             service.cashIn(gameId, playerId, amount);
             return ResponseEntity.ok(new WebResponse<>(null,null));
         } catch (Exception ex){
@@ -173,7 +173,7 @@ public class PokerController {
     		@PathVariable("gameId") UUID gameId) throws Exception {
         String method = "PokerController.generate():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             File file = service.generate(gameId);
             StringBuilder sb = new StringBuilder("attachment; filename=\"")
                     .append(file.getName()).append("\"");
@@ -192,7 +192,7 @@ public class PokerController {
     		@PathVariable("gameId") UUID gameId) throws Exception {
         String method = "PokerController.settle():";
         try {
-            logger.info("{} In... {} ", method);
+            logger.info("{} In...", method);
             service.settle(gameId);
 
             return ResponseEntity.ok(gameId);

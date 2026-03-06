@@ -39,8 +39,8 @@ export default function Player({ playerId, onBack }) {
     } ;
 
     return (
-        <div style={{ padding: 30 }}>
-        
+        <div className="container">
+        <div className="page">          
         <Button onClick={onBack} style={{ marginBottom: 20 }}>
             {"<< Back to Games"}
         </Button>
@@ -104,6 +104,7 @@ export default function Player({ playerId, onBack }) {
         </Tabs>
         </div>
         </div>
+      </div>
       </div>
     );
 }
